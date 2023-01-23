@@ -1,24 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Select from "react-select";
+import Sun from './Img/sun.png'
 
-function App() {
+const App = () => {
+  const [city, setCity] = React.useState('Moscow');
+
+  const options = [
+    {value: 'Moscow', label: 'Moscow'},
+    {value: 'NewYork', label: 'NewYork'},
+    {value: 'Tokyo', label: 'Tokyo'}
+  ]
+
+  function getCity(){
+    return city ? options.find(c => c.value === city) : ''
+  }
+
+  function onChange(newValue){
+    setCity(newValue.value)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <>
+      <header>
+        <Select options={options} value={getCity()} onChange={onChange} className='options'/>
       </header>
-    </div>
+
+      <main>
+        <div className='weather_now'>
+          <h2>City: {city}</h2>
+          <img src={Sun} alt='Sun' className='Img'/>
+          <p>Temperature: 25 C</p>
+        </div>
+      </main>
+    </>
   );
 }
 
