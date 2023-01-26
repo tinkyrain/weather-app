@@ -34,23 +34,10 @@ const App = () => {
     setTemperature(info.temp)
   }
 
-  function getCity(){
-    return city ? options.find(c => c.value === city) : ''
-  }
-
-  function onChange(newValue){
-    setCity(newValue.value);
-    setTemperature(info.temp);
-  }
-
   gettingWeather();
 
   return (
     <>
-      <header>
-        <Select options={options} value={getCity()} onChange={onChange} className='options'/>
-      </header>
-
       <main>
         <div className='weather_now'>
           <h2>City: {city}</h2>
